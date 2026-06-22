@@ -35,7 +35,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ── DESIGN TOKENS — Electric Blue Glassmorphism (UNCHANGED) ──────────────────
+# ── DESIGN TOKENS — Electric Blue Glassmorphism ──────────────────────────────
 BG        = "#06080f"
 BG2       = "#080b14"
 BLUE_DARK = "#003eb3"
@@ -54,7 +54,6 @@ GREEN     = "#00e676"
 RED       = "#ff4560"
 GOLD      = "#ffd600"
 
-
 # ── GLOBAL CSS ────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <style>
@@ -67,27 +66,10 @@ header {{ display: none !important; }}
 [data-testid="collapsedControl"] {{ display: none !important; }}
 section[data-testid="stSidebar"] {{ display: none !important; }}
 .block-container {{ padding-top: 0 !important; max-width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; margin-top: 0 !important; }}
-
-/* ── Kill Streamlit top spacing ── */
-.stMainBlockContainer {{
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}}
-div[data-testid="stVerticalBlock"] > div:first-child {{
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}}           
-
-/* ── Remove gap between navbar and page content ── */
-.stApp > div > div > div > div > div[data-testid="stVerticalBlock"] {{
-    gap: 0 !important;
-    padding-top: 0 !important;
-}}
-iframe {{ display: block; }}
-div[data-testid="stVerticalBlockBorderWrapper"] {{
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-}}            
+.stMainBlockContainer {{ padding-top: 0 !important; margin-top: 0 !important; }}
+div[data-testid="stVerticalBlock"] > div:first-child {{ margin-top: 0 !important; padding-top: 0 !important; }}
+.stApp > div > div > div > div > div[data-testid="stVerticalBlock"] {{ gap: 0 !important; padding-top: 0 !important; }}
+div[data-testid="stVerticalBlockBorderWrapper"] {{ padding-top: 0 !important; margin-top: 0 !important; }}
 
 /* ── Base ── */
 html, body, .stApp {{
@@ -96,304 +78,103 @@ html, body, .stApp {{
     font-family: 'Inter', sans-serif !important;
 }}
 
-
 /* ── NAVBAR ── */
 .navbar {{
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    height: 60px;
+    position: sticky; top: 0; z-index: 999;
+    display: flex; align-items: center;
+    padding: 0 20px; height: 60px;
     background: linear-gradient(90deg, rgba(0,50,160,0.92) 0%, rgba(0,20,60,0.88) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid {BORDER};
-    gap: 0;
 }}
-.navbar-brand {{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-right: 32px;
-    flex-shrink: 0;
-}}
-.navbar-brand img {{
-    width: 38px;
-    height: 38px;
-    object-fit: contain;
-}}
-.navbar-brand-text {{
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 2.5px;
-    color: {WHITE};
-    line-height: 1.15;
-}}
-.navbar-brand-sub {{
-    font-size: 8px;
-    color: {WHITE30};
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}}
-.navbar-right {{
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    flex-shrink: 0;
-}}
-.live-badge {{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 10px;
-    color: {BLUE_LIT};
-    letter-spacing: 1.5px;
-    font-weight: 500;
-}}
-.live-dot {{
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: {BLUE_LIT};
-    box-shadow: 0 0 8px {BLUE_LIT};
-    animation: blink 2s infinite;
-}}
-@keyframes blink {{
-    0%,100% {{ opacity:1; box-shadow: 0 0 8px {BLUE_LIT}; }}
-    50% {{ opacity:0.35; box-shadow: 0 0 3px {BLUE_LIT}; }}
-}}
-.navbar-stat {{
-    font-size: 11px;
-    color: {WHITE30};
-}}
-.navbar-stat b {{ color: {WHITE}; font-weight: 600; }}
-.navbar-built {{
-    font-size: 10px;
-    color: {WHITE30};
-}}
-.navbar-built span {{ color: {BLUE_LIT}; font-weight: 600; }}
+.navbar-brand {{ display:flex; align-items:center; gap:10px; margin-right:32px; flex-shrink:0; }}
+.navbar-brand img {{ width:38px; height:38px; object-fit:contain; }}
+.navbar-brand-text {{ font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2.5px; color:{WHITE}; line-height:1.15; }}
+.navbar-brand-sub {{ font-size:8px; color:{WHITE30}; letter-spacing:2px; text-transform:uppercase; }}
+.navbar-right {{ margin-left:auto; display:flex; align-items:center; gap:18px; flex-shrink:0; }}
+.live-badge {{ display:flex; align-items:center; gap:5px; font-size:10px; color:{BLUE_LIT}; letter-spacing:1.5px; font-weight:500; }}
+.live-dot {{ width:6px; height:6px; border-radius:50%; background:{BLUE_LIT}; box-shadow:0 0 8px {BLUE_LIT}; animation:blink 2s infinite; }}
+@keyframes blink {{ 0%,100% {{ opacity:1; box-shadow:0 0 8px {BLUE_LIT}; }} 50% {{ opacity:0.35; box-shadow:0 0 3px {BLUE_LIT}; }} }}
+.navbar-stat {{ font-size:11px; color:{WHITE30}; }}
+.navbar-stat b {{ color:{WHITE}; font-weight:600; }}
+.navbar-built {{ font-size:10px; color:{WHITE30}; }}
+.navbar-built span {{ color:{BLUE_LIT}; font-weight:600; }}
 
 /* ── Nav buttons row ── */
 .nav-row {{
     background: linear-gradient(90deg, rgba(0,40,140,0.82) 0%, rgba(0,15,50,0.78) 100%);
     border-bottom: 1px solid {BORDER2};
-    padding: 6px 20px;
-    display: flex;
-    gap: 4px;
+    padding: 6px 20px; display: flex; gap: 4px;
 }}
-
-/* Reduce top spacing below nav */
-.block-container {{
-    padding-top: 0.8rem !important;
-}}
-
-/* Reduce title margin */
-h1 {{
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}}
+.block-container {{ padding-top: 0.8rem !important; }}
+h1 {{ margin-top: 0 !important; padding-top: 0 !important; }}
 
 /* ── Page content padding ── */
-.page-wrap {{
-    padding: 0 28px 40px 28px;
-    margin-top: -32px;
-    position: relative;
-    z-index: 1;
-}}
+.page-wrap {{ padding: 0 28px 40px 28px; margin-top: -32px; position: relative; z-index: 1; }}
 
 /* ── Metric cards ── */
 [data-testid="metric-container"] {{
     background: linear-gradient(135deg, {GLASS}, {GLASS2}) !important;
-    border: 1px solid {BORDER} !important;
-    border-radius: 10px !important;
-    padding: 16px !important;
-    backdrop-filter: blur(14px) !important;
+    border: 1px solid {BORDER} !important; border-radius: 10px !important;
+    padding: 16px !important; backdrop-filter: blur(14px) !important;
 }}
-
-/* LABEL */
-[data-testid="stMetricLabel"],
-[data-testid="stMetricLabel"] *,
-[data-testid="stMetricLabel"] p {{
-    color: {WHITE} !important;
-    fill: {WHITE} !important;
-    opacity: 1 !important;
+[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] *, [data-testid="stMetricLabel"] p {{
+    color: {WHITE} !important; fill: {WHITE} !important; opacity: 1 !important;
 }}
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] * {{ color: {BLUE_LIT} !important; }}
+[data-testid="stMetricDelta"], [data-testid="stMetricDelta"] * {{ color: {WHITE} !important; }}
 
-/* VALUE */
-[data-testid="stMetricValue"],
-[data-testid="stMetricValue"] * {{
-    color: {BLUE_LIT} !important;
-}}
-
-/* DELTA */
-[data-testid="stMetricDelta"],
-[data-testid="stMetricDelta"] * {{
-    color: {WHITE} !important;
-}}
-
-/* ── Tabs (UNCHANGED) ── */
+/* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] {{
-    background: {GLASS2} !important;
-    border: 1px solid {BORDER2} !important;
-    border-radius: 8px !important;
-    padding: 4px !important;
-    gap: 4px !important;
+    background: {GLASS2} !important; border: 1px solid {BORDER2} !important;
+    border-radius: 8px !important; padding: 4px !important; gap: 4px !important;
 }}
-.stTabs [data-baseweb="tab"] {{
-    color: {WHITE30} !important;
-    border-radius: 6px !important;
-    font-size: 12px !important;
-}}
+.stTabs [data-baseweb="tab"] {{ color: {WHITE30} !important; border-radius: 6px !important; font-size: 12px !important; }}
 .stTabs [aria-selected="true"] {{
     background: linear-gradient(135deg, {GLASS}, {GLASS2}) !important;
-    color: {BLUE_LIT} !important;
-    border: 1px solid {BORDER} !important;
+    color: {BLUE_LIT} !important; border: 1px solid {BORDER} !important;
 }}
 
-/* Plotly chart titles, subtitles, axis, legends */
-.stPlotlyChart text {{
-    fill: {WHITE} !important;
-}}
+/* Plotly */
+.stPlotlyChart text {{ fill: {WHITE} !important; }}
+.stPlotlyChart .gtitle, .stPlotlyChart .xtitle, .stPlotlyChart .ytitle {{ fill: {WHITE} !important; }}
+.stPlotlyChart .legendtext {{ fill: {WHITE} !important; }}
 
-.stPlotlyChart .gtitle,
-.stPlotlyChart .xtitle,
-.stPlotlyChart .ytitle {{
-    fill: {WHITE} !important;
-}}
+/* Widget labels */
+[data-testid="stWidgetLabel"] {{ color: {WHITE} !important; padding-left: 16px !important; }}
+[data-testid="stWidgetLabel"] p {{ color: {WHITE} !important; margin-left: 0 !important; }}
+[data-testid="stRadio"] [data-testid="stWidgetLabel"] {{ padding-left: 18px !important; color: {WHITE} !important; }}
+[data-testid="stRadio"] div[role="radiogroup"] {{ margin-left: 24px !important; gap: 18px !important; }}
+div[data-baseweb="select"] {{ margin-left: 20px !important; margin-right: 20px !important; }}
+div[data-baseweb="select"] * {{ color: {WHITE} !important; }}
 
-.stPlotlyChart .legendtext {{
-    fill: {WHITE} !important;
-}}
-
-/* Radio section alignment */
-[data-testid="stRadio"] {{
-    padding-left: 0 !important;
-}}
-
-/* Push only options slightly right */
-[data-testid="stRadio"] div[role="radiogroup"] {{
-    margin-left: 24px  !important;
-    gap: 18px !important;
-}}
-
-/* Keep heading aligned */
-[data-testid="stRadio"] [data-testid="stWidgetLabel"] {{
-    color: {WHITE} !important;
-    padding-left: 0 !important;
-    margin-bottom: 6px !important;
-}}
-/* Shift only radio heading */
-[data-testid="stRadio"] [data-testid="stWidgetLabel"] {{
-    padding-left: 18px !important;
-    margin-bottom: 6px !important;
-    color: {WHITE} !important;
-}}
-
-/* Widget headings (dropdown, sliders, inputs etc.) */
-[data-testid="stWidgetLabel"] {{
-    color: {WHITE} !important;
-    padding-left: 16px !important;   /* align with other content */
-}}
-
-[data-testid="stWidgetLabel"] p {{
-    color: {WHITE} !important;
-    margin-left: 0 !important;
-}}
-
-/* Align actual dropdown container */
-div[data-baseweb="select"] {{
-    margin-left: 20px !important;
-    margin-right: 20px !important;
-}}
-
-/* Keep dropdown text white */
-div[data-baseweb="select"] * {{
-    color: {WHITE} !important;
-}}
-
-/* ── Selectbox (UNCHANGED) ── */
-.stSelectbox > div > div {{
-    background: {GLASS2} !important;
-    border: 1px solid {BORDER} !important;
-    color: {WHITE} !important;
-    border-radius: 8px !important;
-}}
+/* ── Selectbox ── */
+.stSelectbox > div > div {{ background: {GLASS2} !important; border: 1px solid {BORDER} !important; color: {WHITE} !important; border-radius: 8px !important; }}
 .stRadio > div {{ gap: 8px !important; }}
 .stRadio label {{ color: {WHITE60} !important; font-size: 13px !important; }}
 
-/* ── Progress (UNCHANGED) ── */
-.stProgress > div > div {{
-    background: rgba(255,255,255,0.06) !important;
-    border-radius: 4px !important;
-}}
-.stProgress > div > div > div {{
-    background: linear-gradient(90deg, {BLUE_DARK}, {BLUE_LIT}) !important;
-    border-radius: 4px !important;
-}}
+/* ── Progress ── */
+.stProgress > div > div {{ background: rgba(255,255,255,0.06) !important; border-radius: 4px !important; }}
+.stProgress > div > div > div {{ background: linear-gradient(90deg, {BLUE_DARK}, {BLUE_LIT}) !important; border-radius: 4px !important; }}
 
 hr {{ border-color: {BORDER2} !important; margin: 16px 0 !important; }}
 
-/* ── Custom classes (ALL UNCHANGED) ── */
-.sec-label {{
-    font-size: 9px;
-    color: rgba(0,180,255,0.55);
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    font-family: 'Inter', sans-serif;
-}}
-.page-title {{
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    letter-spacing: 3px;
-    color: {WHITE};
-    line-height: 1;
-    margin-bottom: 4px;
-    padding-left: 28px;
-}}
-.page-sub {{
-    font-size: 11px;
-    color: {WHITE30};
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-     padding-left: 28px;
-}}
-.match-card {{
-    background: linear-gradient(135deg, rgba(0,70,200,0.2), rgba(0,30,90,0.12));
-    border: 1px solid {BORDER};
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-}}
-.match-card-plain {{
-    background: rgba(255,255,255,0.035);
-    border: 1px solid {BORDER2};
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-}}
-.match-score {{
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: {WHITE};
-    text-align: center;
-    line-height: 1;
-}}
-.match-team {{
-    font-size: 13px;
-    font-weight: 600;
-    color: {WHITE};
-    letter-spacing: 0.5px;
-}}
-.match-meta {{
-    font-size: 10px;
-    color: {WHITE30};
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}}
+/* ── Custom classes ── */
+.sec-label {{ font-size:9px; color:rgba(0,180,255,0.55); letter-spacing:2.5px; text-transform:uppercase; margin-bottom:8px; font-family:'Inter',sans-serif; }}
+.page-title {{ font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:3px; color:{WHITE}; line-height:1; margin-bottom:4px; padding-left:28px; }}
+.page-sub {{ font-size:11px; color:{WHITE30}; letter-spacing:1px; margin-bottom:16px; padding-left:28px; }}
+.match-card {{ background:linear-gradient(135deg,rgba(0,70,200,0.2),rgba(0,30,90,0.12)); border:1px solid {BORDER}; border-radius:10px; padding:12px 16px; margin-bottom:8px; }}
+.match-card-plain {{ background:rgba(255,255,255,0.035); border:1px solid {BORDER2}; border-radius:10px; padding:12px 16px; margin-bottom:8px; }}
+.match-score {{ font-family:'Bebas Neue',sans-serif; font-size:28px; color:{WHITE}; text-align:center; line-height:1; }}
+.match-team {{ font-size:13px; font-weight:600; color:{WHITE}; letter-spacing:0.5px; }}
+.match-meta {{ font-size:10px; color:{WHITE30}; letter-spacing:1px; text-transform:uppercase; }}
+
+/* ── Score alignment — fixed center column ── */
+.match-row {{ display:flex; align-items:center; margin-top:8px; }}
+.match-row-home {{ flex:1; font-size:13px; font-weight:600; letter-spacing:0.5px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+.match-row-score {{ font-family:'Bebas Neue',sans-serif; font-size:26px; line-height:1; text-align:center; width:90px; flex-shrink:0; }}
+.match-row-away {{ flex:1; font-size:13px; font-weight:600; letter-spacing:0.5px; text-align:right; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }}
+
 .badge {{ display:inline-block; font-size:8px; padding:2px 7px; border-radius:8px; font-weight:600; letter-spacing:0.5px; margin-top:3px; }}
 .badge-win {{ background:rgba(0,140,255,0.18); color:{BLUE_LIT}; border:1px solid rgba(0,140,255,0.3); }}
 .badge-draw {{ background:rgba(255,255,255,0.07); color:{WHITE}; border:1px solid rgba(255,255,255,0.2); }}
@@ -402,93 +183,60 @@ hr {{ border-color: {BORDER2} !important; margin: 16px 0 !important; }}
 .form-w {{ display:inline-flex;width:22px;height:22px;border-radius:50%;background:{GREEN};color:#000;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin:2px; }}
 .form-d {{ display:inline-flex;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.2);color:{WHITE};align-items:center;justify-content:center;font-size:10px;font-weight:700;margin:2px; }}
 .form-l {{ display:inline-flex;width:22px;height:22px;border-radius:50%;background:{RED};color:{WHITE};align-items:center;justify-content:center;font-size:10px;font-weight:700;margin:2px; }}
-.stat-card {{
-    background: linear-gradient(135deg, rgba(0,70,200,0.22), rgba(0,30,90,0.14));
-    border: 1px solid {BORDER};
-    border-radius: 10px;
-    padding: 12px 14px;
-    text-align: center;
-}}
-.stat-val {{ font-size: 22px; font-weight: 700; color: {WHITE}; }}
-.stat-accent {{ color: {BLUE_LIT}; }}
-.stat-lbl {{ font-size: 9px; color: {WHITE30}; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px; }}
-.accent-line {{ height: 2px; border-radius: 2px; background: linear-gradient(90deg, {BLUE_DARK}, {BLUE_MID}, {BLUE_LIT}); margin-top: 12px; }}
-.podium-gold {{
-    background: linear-gradient(135deg, rgba(0,80,200,0.3), rgba(0,40,120,0.2));
-    border: 1px solid {BLUE_LIT};
-    border-radius: 12px; padding: 20px; text-align: center;
-}}
-.podium-silver {{
-    background: rgba(255,255,255,0.04);
-    border: 1px solid {BORDER};
-    border-radius: 12px; padding: 20px; text-align: center; margin-top: 24px;
-}}
+.stat-card {{ background:linear-gradient(135deg,rgba(0,70,200,0.22),rgba(0,30,90,0.14)); border:1px solid {BORDER}; border-radius:10px; padding:12px 14px; text-align:center; }}
+.stat-val {{ font-size:22px; font-weight:700; color:{WHITE}; }}
+.stat-accent {{ color:{BLUE_LIT}; }}
+.stat-lbl {{ font-size:9px; color:{WHITE30}; letter-spacing:1.5px; text-transform:uppercase; margin-top:3px; }}
+.accent-line {{ height:2px; border-radius:2px; background:linear-gradient(90deg,{BLUE_DARK},{BLUE_MID},{BLUE_LIT}); margin-top:12px; }}
+.podium-gold {{ background:linear-gradient(135deg,rgba(0,80,200,0.3),rgba(0,40,120,0.2)); border:1px solid {BLUE_LIT}; border-radius:12px; padding:20px; text-align:center; }}
+.podium-silver {{ background:rgba(255,255,255,0.04); border:1px solid {BORDER}; border-radius:12px; padding:20px; text-align:center; margin-top:24px; }}
 .podium-name {{ font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; color:{WHITE}; margin-top:8px; }}
 .podium-prob {{ font-size:22px; font-weight:700; color:{BLUE_LIT}; margin-top:6px; }}
 .podium-sub {{ font-size:10px; color:{WHITE30}; }}
 
 /* ── Standings custom rows ── */
-.s-row {{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 9px 12px;
-    border-radius: 7px;
-    margin-bottom: 4px;
-    border-left: 3px solid transparent;
-}}
-.s-row-1 {{
-    background: linear-gradient(90deg, rgba(0,130,255,0.22), rgba(0,80,200,0.10));
-    border-left-color: {BLUE_LIT};
-}}
-.s-row-2 {{
-    background: linear-gradient(90deg, rgba(0,100,200,0.16), rgba(0,60,160,0.08));
-    border-left-color: {BLUE_MID};
-}}
-.s-row-3 {{
-    background: linear-gradient(90deg, rgba(0,62,179,0.12), rgba(0,40,120,0.06));
-    border-left-color: {BLUE_DARK};
-}}
-.s-row-4 {{
-    background: rgba(255,255,255,0.03);
-    border-left-color: rgba(255,255,255,0.12);
-}}
+.s-row {{ display:flex; align-items:center; gap:6px; padding:9px 12px; border-radius:7px; margin-bottom:4px; border-left:3px solid transparent; }}
+.s-row-1 {{ background:linear-gradient(90deg,rgba(0,130,255,0.22),rgba(0,80,200,0.10)); border-left-color:{BLUE_LIT}; }}
+.s-row-2 {{ background:linear-gradient(90deg,rgba(0,100,200,0.16),rgba(0,60,160,0.08)); border-left-color:{BLUE_MID}; }}
+.s-row-3 {{ background:linear-gradient(90deg,rgba(0,62,179,0.12),rgba(0,40,120,0.06)); border-left-color:{BLUE_DARK}; }}
+.s-row-4 {{ background:rgba(255,255,255,0.03); border-left-color:rgba(255,255,255,0.12); }}
 .s-pos {{ width:16px; font-size:11px; font-weight:700; flex-shrink:0; }}
 .s-team {{ flex:1; font-size:12px; font-weight:600; color:{WHITE}; }}
 .s-stat {{ width:26px; text-align:center; font-size:11px; color:{WHITE60}; flex-shrink:0; }}
 .s-pts {{ width:28px; text-align:center; font-size:13px; font-weight:700; flex-shrink:0; }}
 .s-adv {{ width:14px; text-align:center; font-size:10px; flex-shrink:0; }}
-.s-header {{
-    display:flex; align-items:center; gap:6px;
-    padding:3px 12px 6px 12px;
-}}
+.s-header {{ display:flex; align-items:center; gap:6px; padding:3px 12px 6px 12px; }}
 .s-header-lbl {{ font-size:8px; color:{WHITE30}; letter-spacing:1.5px; text-transform:uppercase; }}
+
+/* Nav buttons */
+div[data-testid="stHorizontalBlock"] {{
+    gap: 4px !important; padding: 0 !important; margin: 0 !important;
+    background: linear-gradient(90deg, rgba(0,40,140,0.82), rgba(0,15,50,0.78)) !important;
+    border-bottom: 1px solid {BORDER2} !important; padding: 6px 20px !important;
+}}
+div[data-testid="stHorizontalBlock"] > div {{ flex: 1 !important; }}
+div[data-testid="stHorizontalBlock"] button {{
+    background: transparent !important; border: none !important; color: {WHITE30} !important;
+    font-size: 11px !important; padding: 5px 6px !important; border-radius: 6px !important;
+    width: 100% !important; font-family: 'Inter', sans-serif !important; transition: all 0.15s !important;
+}}
+div[data-testid="stHorizontalBlock"] button:hover {{ background: {GLASS} !important; color: {WHITE} !important; border: 1px solid {BORDER2} !important; }}
+div[data-testid="stHorizontalBlock"] button p {{ color: inherit !important; font-size: 11px !important; }}
 </style>
 """, unsafe_allow_html=True)
 
-# ── WC26 logo background watermark ──────────────────────────────────────────
+# ── WC26 logo background watermark ───────────────────────────────────────────
 st.markdown(f"""
-<div style="
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 420px;
-    height: 420px;
-    background-image: url('{WC_LOGO_IMG}');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 0;
-"></div>
+<div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:420px;height:420px;
+    background-image:url('{WC_LOGO_IMG}');
+    background-repeat:no-repeat;background-size:contain;background-position:center;
+    opacity:0.08;pointer-events:none;z-index:0;"></div>
 """, unsafe_allow_html=True)
 
-# ── PLOTLY THEME (UNCHANGED) ──────────────────────────────────────────────────
+# ── PLOTLY THEME ──────────────────────────────────────────────────────────────
 PLOT = dict(
-    paper_bgcolor="rgba(0,0,0,0)",
-    plot_bgcolor="rgba(0,0,0,0)",
+    paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
     font=dict(family="Inter", color=WHITE, size=12),
     title_font=dict(family="Bebas Neue", size=18, color=WHITE),
     xaxis=dict(gridcolor="rgba(0,160,255,0.08)", zerolinecolor="rgba(0,160,255,0.1)", color=WHITE30, showgrid=True),
@@ -498,7 +246,7 @@ PLOT = dict(
 )
 BLUE_SCALE = [[0, "#1a3a8f"], [0.5, BLUE_MID], [1.0, BLUE_LIT]]
 
-# ── CONNECTION (UNCHANGED) ────────────────────────────────────────────────────
+# ── CONNECTION — fresh connection each time, no caching ──────────────────────
 def get_connection():
     return pyodbc.connect(
         f"DRIVER={{ODBC Driver 17 for SQL Server}};"
@@ -510,7 +258,7 @@ def get_connection():
         autocommit=True
     )
 
-# ── DATA (UNCHANGED) ──────────────────────────────────────────────────────────
+# ── DATA ──────────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=300)
 def load_matches():
     conn = get_connection()
@@ -527,11 +275,13 @@ def load_matches():
 
 @st.cache_data(ttl=300)
 def load_teams():
-    return pd.read_sql("SELECT * FROM teams", get_connection())
+    conn = get_connection()
+    return pd.read_sql("SELECT * FROM teams", conn)
 
 @st.cache_data(ttl=300)
 def load_predictions():
-    return pd.read_sql("SELECT * FROM predictions ORDER BY win_probability DESC", get_connection())
+    conn = get_connection()
+    return pd.read_sql("SELECT * FROM predictions ORDER BY win_probability DESC", conn)
 
 FIFA_RANKINGS = {
     'France':2,'Spain':3,'England':4,'Brazil':5,'Portugal':6,
@@ -568,7 +318,6 @@ def match_result_label(row):
     elif row['away_score'] > row['home_score']: return 'away'
     return 'draw'
 
-# ── STANDINGS HELPERS ─────────────────────────────────────────────────────────
 def render_standings_header():
     st.markdown(f"""<div class="s-header">
         <div style="width:16px"></div>
@@ -587,32 +336,14 @@ def render_standings_header():
 def render_standings_table(gdf, highlight_team=None):
     for idx, (_, row) in enumerate(gdf.iterrows()):
         pos = idx + 1
-        if pos == 1:
-            row_cls = "s-row s-row-1"
-            pos_col = BLUE_LIT
-            pts_col = BLUE_LIT
-            adv = "✓"; adv_col = GREEN
-        elif pos == 2:
-            row_cls = "s-row s-row-2"
-            pos_col = BLUE_MID
-            pts_col = BLUE_MID
-            adv = "✓"; adv_col = GREEN
-        elif pos == 3:
-            row_cls = "s-row s-row-3"
-            pos_col = BLUE_DARK
-            pts_col = WHITE
-            adv = "?"; adv_col = GOLD
-        else:
-            row_cls = "s-row s-row-4"
-            pos_col = WHITE30
-            pts_col = WHITE
-            adv = ""; adv_col = WHITE30
-
-        hl_outline = f"outline:1px solid {BLUE_LIT};" if highlight_team and row['Team']==highlight_team else ""
+        if pos == 1:   cls="s-row s-row-1"; pc=BLUE_LIT;  ptsc=BLUE_LIT;  adv="✓"; ac=GREEN
+        elif pos == 2: cls="s-row s-row-2"; pc=BLUE_MID;  ptsc=BLUE_MID;  adv="✓"; ac=GREEN
+        elif pos == 3: cls="s-row s-row-3"; pc=BLUE_DARK; ptsc=WHITE;     adv="?"; ac=GOLD
+        else:          cls="s-row s-row-4"; pc=WHITE30;   ptsc=WHITE;     adv="";  ac=WHITE30
+        hl = f"outline:1px solid {BLUE_LIT};" if highlight_team and row['Team']==highlight_team else ""
         gd_str = f"+{int(row['GD'])}" if row['GD']>=0 else str(int(row['GD']))
-
-        st.markdown(f"""<div class="{row_cls}" style="{hl_outline}">
-            <div class="s-pos" style="color:{pos_col}">{pos}</div>
+        st.markdown(f"""<div class="{cls}" style="{hl}">
+            <div class="s-pos" style="color:{pc}">{pos}</div>
             <div class="s-team">{row['Team']}</div>
             <div class="s-stat">{int(row['P'])}</div>
             <div class="s-stat">{int(row['W'])}</div>
@@ -621,8 +352,8 @@ def render_standings_table(gdf, highlight_team=None):
             <div class="s-stat">{int(row['GF'])}</div>
             <div class="s-stat">{int(row['GA'])}</div>
             <div class="s-stat">{gd_str}</div>
-            <div class="s-pts" style="color:{pts_col}">{int(row['Pts'])}</div>
-            <div class="s-adv" style="color:{adv_col}">{adv}</div>
+            <div class="s-pts" style="color:{ptsc}">{int(row['Pts'])}</div>
+            <div class="s-adv" style="color:{ac}">{adv}</div>
         </div>""", unsafe_allow_html=True)
 
 # ── LOAD DATA ─────────────────────────────────────────────────────────────────
@@ -677,72 +408,20 @@ PAGES = [
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
 
-# Render nav as Streamlit buttons inside a styled container
 st.markdown('<div class="nav-row">', unsafe_allow_html=True)
 nav_cols = st.columns(len(PAGES))
 for i, p in enumerate(PAGES):
     with nav_cols[i]:
-        is_active = st.session_state.page == p
-        btn_style = f"""
-            background: {'linear-gradient(135deg,'+GLASS+','+GLASS2+')' if is_active else 'transparent'} !important;
-            border: {'1px solid '+BORDER if is_active else 'none'} !important;
-            color: {BLUE_LIT if is_active else WHITE30} !important;
-            border-radius: 6px !important;
-            font-size: 11px !important;
-            font-weight: {'600' if is_active else '400'} !important;
-            padding: 5px 8px !important;
-            width: 100% !important;
-            cursor: pointer !important;
-            letter-spacing: 0.3px !important;
-        """
         if st.button(p, key=f"nav_{i}", use_container_width=True):
             st.session_state.page = p
             st.rerun()
 st.markdown('</div>', unsafe_allow_html=True)
 
-# Style the nav buttons
-st.markdown(f"""
-<style>
-div[data-testid="stHorizontalBlock"] {{
-    gap: 4px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: linear-gradient(90deg, rgba(0,40,140,0.82), rgba(0,15,50,0.78)) !important;
-    border-bottom: 1px solid {BORDER2} !important;
-    padding: 6px 20px !important;
-}}
-div[data-testid="stHorizontalBlock"] > div {{
-    flex: 1 !important;
-}}
-div[data-testid="stHorizontalBlock"] button {{
-    background: transparent !important;
-    border: none !important;
-    color: {WHITE30} !important;
-    font-size: 11px !important;
-    padding: 5px 6px !important;
-    border-radius: 6px !important;
-    width: 100% !important;
-    font-family: 'Inter', sans-serif !important;
-    letter-spacing: 0.3px !important;
-    transition: all 0.15s !important;
-}}
-div[data-testid="stHorizontalBlock"] button:hover {{
-    background: {GLASS} !important;
-    color: {WHITE} !important;
-    border: 1px solid {BORDER2} !important;
-}}
-div[data-testid="stHorizontalBlock"] button p {{
-    color: inherit !important;
-    font-size: 11px !important;
-}}
-</style>
-""", unsafe_allow_html=True)
-
 page = st.session_state.page
 st.markdown('<div>', unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PAGE 1 — OVERVIEW (UNCHANGED from original)
+# PAGE 1 — OVERVIEW
 # ══════════════════════════════════════════════════════════════════════════════
 if "Overview" in page:
     st.markdown('<div class="page-title">FIFA WORLD CUP 2026</div>', unsafe_allow_html=True)
@@ -759,7 +438,6 @@ if "Overview" in page:
 
     st.markdown("")
     col_l, col_r = st.columns(2)
-
     with col_l:
         st.markdown('<div class="sec-label">Goals by Group</div>', unsafe_allow_html=True)
         gbg = matches_df.groupby('group_short')['total_goals'].sum().reset_index()
@@ -767,8 +445,7 @@ if "Overview" in page:
         fig = go.Figure(go.Bar(
             x=gbg['Group'], y=gbg['Goals'],
             marker=dict(color=gbg['Goals'], colorscale=BLUE_SCALE, showscale=False),
-            text=gbg['Goals'], textposition='outside',
-            textfont=dict(color=WHITE, size=11)
+            text=gbg['Goals'], textposition='outside', textfont=dict(color=WHITE, size=11)
         ))
         fig.update_layout(**PLOT, height=300, title="Goals Scored per Group", showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
@@ -776,15 +453,11 @@ if "Overview" in page:
     with col_r:
         st.markdown('<div class="sec-label">Results Distribution</div>', unsafe_allow_html=True)
         fig2 = go.Figure(go.Pie(
-            labels=['Home Win','Away Win','Draw'],
-            values=[home_wins, away_wins, draws],
-            hole=0.6,
-            marker_colors=[BLUE_LIT, BLUE_MID, "rgba(255,255,255,0.15)"],
-            textfont=dict(color=WHITE, size=12),
-        ))
+            labels=['Home Win','Away Win','Draw'], values=[home_wins, away_wins, draws],
+            hole=0.6, marker_colors=[BLUE_LIT, BLUE_MID, "rgba(255,255,255,0.15)"],
+            textfont=dict(color=WHITE, size=12)))
         fig2.add_annotation(text=f"<b>{n_matches}</b><br><span style='font-size:10px'>matches</span>",
-                            x=0.5, y=0.5, showarrow=False,
-                            font=dict(color=WHITE, size=14))
+            x=0.5, y=0.5, showarrow=False, font=dict(color=WHITE, size=14))
         fig2.update_layout(**PLOT, height=300, title="Match Result Distribution")
         fig2.update_layout(legend=dict(orientation='h', y=-0.08))
         st.plotly_chart(fig2, use_container_width=True)
@@ -812,10 +485,10 @@ if "Overview" in page:
                     <div class="match-meta">{r['match_date'].strftime('%d %b')} · Group {r['group_short']}</div>
                     <div><span class="badge badge-win">🔥 {int(r['total_goals'])} GOALS</span></div>
                 </div>
-                <div style="display:flex;align-items:center;margin-top:10px">
-                    <div style="flex:1;font-size:14px;font-weight:600;{hw}">{r['home_team']}</div>
-                    <div class="match-score" style="width:80px;flex-shrink:0;text-align:center">{int(r['home_score'])} – {int(r['away_score'])}</div>
-                    <div style="flex:1;font-size:14px;font-weight:600;text-align:right;{aw}">{r['away_team']}</div>
+                <div class="match-row">
+                    <div class="match-row-home">{r['home_team']}</div>
+                    <div class="match-row-score">{int(r['home_score'])} – {int(r['away_score'])}</div>
+                    <div class="match-row-away">{r['away_team']}</div>
                 </div>
             </div>""", unsafe_allow_html=True)
 
@@ -831,10 +504,10 @@ if "Overview" in page:
             with cols_aw[i % 3]:
                 st.markdown(f"""<div class="match-card-plain">
                     <div class="match-meta">{r['match_date'].strftime('%d %b')} · Group {r['group_short']}</div>
-                    <div style="display:flex;align-items:center;margin-top:10px">
-                        <div style="flex:1;font-size:14px;font-weight:600;{hw}">{r['home_team']}</div>
-                        <div class="match-score" style="width:80px;flex-shrink:0;text-align:center">{int(r['home_score'])} – {int(r['away_score'])}</div>
-                        <div style="flex:1;font-size:14px;font-weight:600;text-align:right;{aw}">{r['away_team']}</div>
+                    <div class="match-row">
+                        <div class="match-row-home">{r['home_team']}</div>
+                        <div class="match-row-score">{int(r['home_score'])}–{int(r['away_score'])}</div>
+                        <div class="match-row-away">{r['away_team']}</div>
                     </div>
                     <div style="margin-top:4px">
                         {'<span class="badge badge-upset">⚡ UPSET · Rank #'+str(rk_a)+' beat #'+str(rk_h)+'</span>' if upset else '<span class="badge badge-away">AWAY WIN</span>'}
@@ -844,7 +517,7 @@ if "Overview" in page:
         st.info("No away wins yet")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PAGE 2 — GROUP STANDINGS (NEW custom HTML rows)
+# PAGE 2 — GROUP STANDINGS
 # ══════════════════════════════════════════════════════════════════════════════
 elif "Standings" in page:
     st.markdown('<div class="page-title">Group Standings</div>', unsafe_allow_html=True)
@@ -876,10 +549,8 @@ elif "Standings" in page:
         with cr:
             colors = [BLUE_LIT if i<2 else BLUE_DARK if i==2 else "rgba(255,255,255,0.15)" for i in range(len(gdf))]
             fig = go.Figure(go.Bar(
-                x=gdf['Team'], y=gdf['Pts'],
-                marker_color=colors,
-                text=gdf['Pts'], textposition='outside',
-                textfont=dict(color=WHITE)
+                x=gdf['Team'], y=gdf['Pts'], marker_color=colors,
+                text=gdf['Pts'], textposition='outside', textfont=dict(color=WHITE)
             ))
             fig.update_layout(**PLOT, height=320, title=f"Group {sel} — Points", showlegend=False)
             st.plotly_chart(fig, use_container_width=True)
@@ -895,18 +566,17 @@ elif "Standings" in page:
             aw = f"color:{BLUE_LIT};font-weight:700" if rt=='away' else ""
             st.markdown(f"""<div class="match-card-plain">
                 <div style="display:flex;justify-content:space-between;align-items:center">
-                    <div class="match-meta">{r['match_date'].strftime('%d %b %Y')}</div>
-                    {badge}
+                    <div class="match-meta">{r['match_date'].strftime('%d %b %Y')}</div>{badge}
                 </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-                    <div class="match-team" style="{hw}">{r['home_team']}</div>
-                    <div class="match-score">{int(r['home_score'])} – {int(r['away_score'])}</div>
-                    <div class="match-team" style="text-align:right;{aw}">{r['away_team']}</div>
+                <div class="match-row">
+                    <div class="match-row-home" style="{hw}">{r['home_team']}</div>
+                    <div class="match-row-score">{int(r['home_score'])} – {int(r['away_score'])}</div>
+                    <div class="match-row-away" style="{aw}">{r['away_team']}</div>
                 </div>
             </div>""", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PAGE 3 — MATCH RESULTS (UNCHANGED)
+# PAGE 3 — MATCH RESULTS
 # ══════════════════════════════════════════════════════════════════════════════
 elif "Match Results" in page:
     st.markdown('<div class="page-title">Match Results</div>', unsafe_allow_html=True)
@@ -914,12 +584,9 @@ elif "Match Results" in page:
     st.markdown("")
 
     c1, c2, c3 = st.columns(3)
-    with c1:
-        grp_f = st.selectbox("Group", ["All"] + sorted(matches_df['group_short'].unique()))
-    with c2:
-        res_f = st.selectbox("Result", ["All","Home Win","Away Win","Draw"])
-    with c3:
-        sort_f = st.radio("Sort", ["Latest first","Earliest first"], horizontal=True)
+    with c1: grp_f = st.selectbox("Group", ["All"] + sorted(matches_df['group_short'].unique()))
+    with c2: res_f = st.selectbox("Result", ["All","Home Win","Away Win","Draw"])
+    with c3: sort_f = st.radio("Sort", ["Latest first","Earliest first"], horizontal=True)
 
     filt = matches_df.copy()
     if grp_f != "All": filt = filt[filt['group_short']==grp_f]
@@ -930,7 +597,6 @@ elif "Match Results" in page:
 
     st.markdown(f'<div class="sec-label">{len(filt)} matches</div>', unsafe_allow_html=True)
     st.markdown("")
-
     cols2 = st.columns(2)
     for i, (_, r) in enumerate(filt.iterrows()):
         rt = r['result_type']
@@ -942,19 +608,18 @@ elif "Match Results" in page:
         with cols2[i%2]:
             st.markdown(f"""<div class="match-card-plain">
                 <div style="display:flex;justify-content:space-between">
-                    <div class="match-meta">Group {r['group_short']} · {r['match_date'].strftime('%d %b')}</div>
-                    {badge}
+                    <div class="match-meta">Group {r['group_short']} · {r['match_date'].strftime('%d %b')}</div>{badge}
                 </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
-                    <div style="font-size:14px;font-weight:600;{hw}">{r['home_team']}</div>
-                    <div class="match-score">{int(r['home_score'])} – {int(r['away_score'])}</div>
-                    <div style="font-size:14px;font-weight:600;text-align:right;{aw}">{r['away_team']}</div>
+                <div class="match-row">
+                    <div class="match-row-home" style="{hw}">{r['home_team']}</div>
+                    <div class="match-row-score">{int(r['home_score'])} – {int(r['away_score'])}</div>
+                    <div class="match-row-away" style="{aw}">{r['away_team']}</div>
                 </div>
                 <div class="match-meta" style="margin-top:6px">⚽ {int(r['total_goals'])} goals</div>
             </div>""", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PAGE 4 — TEAM DEEP DIVE (standings now use custom HTML)
+# PAGE 4 — TEAM DEEP DIVE
 # ══════════════════════════════════════════════════════════════════════════════
 elif "Team" in page:
     st.markdown('<div class="page-title">Team Deep Dive</div>', unsafe_allow_html=True)
@@ -963,7 +628,6 @@ elif "Team" in page:
 
     all_teams = sorted(set(matches_df['home_team'].tolist() + matches_df['away_team'].tolist()))
     sel_team  = st.selectbox("Select a team", all_teams)
-
     tm = matches_df[(matches_df['home_team']==sel_team)|(matches_df['away_team']==sel_team)].sort_values('match_date')
 
     if len(tm) == 0:
@@ -973,28 +637,18 @@ elif "Team" in page:
         ga_t = sum(int(r['away_score']) if r['home_team']==sel_team else int(r['home_score']) for _,r in tm.iterrows())
         pts  = sum((3 if (r['home_team']==sel_team and r['home_score']>r['away_score']) or
                          (r['away_team']==sel_team and r['away_score']>r['home_score'])
-                    else 1 if r['home_score']==r['away_score'] else 0)
-                   for _,r in tm.iterrows())
-        wins   = sum(1 for _,r in tm.iterrows() if
-                     (r['home_team']==sel_team and r['home_score']>r['away_score']) or
-                     (r['away_team']==sel_team and r['away_score']>r['home_score']))
-        draws_t = sum(1 for _,r in tm.iterrows() if r['home_score']==r['away_score'])
-        losses  = len(tm) - wins - draws_t
-        rank    = FIFA_RANKINGS.get(sel_team, 90)
-        grp     = tm.iloc[0]['group_short']
-        gd      = gf_t - ga_t
+                    else 1 if r['home_score']==r['away_score'] else 0) for _,r in tm.iterrows())
+        rank = FIFA_RANKINGS.get(sel_team, 90)
+        grp  = tm.iloc[0]['group_short']
+        gd   = gf_t - ga_t
 
         c1,c2,c3,c4,c5,c6 = st.columns(6)
-        c1.metric("Group", grp)
-        c2.metric("FIFA Rank", f"#{rank}")
-        c3.metric("Points", pts)
-        c4.metric("Goals For", gf_t)
-        c5.metric("Goals Against", ga_t)
-        c6.metric("GD", f"+{gd}" if gd>=0 else str(gd))
-
+        c1.metric("Group", grp); c2.metric("FIFA Rank", f"#{rank}")
+        c3.metric("Points", pts); c4.metric("Goals For", gf_t)
+        c5.metric("Goals Against", ga_t); c6.metric("GD", f"+{gd}" if gd>=0 else str(gd))
         st.markdown("")
-        cl, cr = st.columns(2)
 
+        cl, cr = st.columns(2)
         with cl:
             st.markdown('<div class="sec-label">Form Guide</div>', unsafe_allow_html=True)
             form_html = ""
@@ -1058,7 +712,7 @@ elif "Team" in page:
                 st.progress(int(float(tp['advancement_prob_pct'])))
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PAGE 5 — TOURNAMENT TRENDS (UNCHANGED)
+# PAGE 5 — TOURNAMENT TRENDS
 # ══════════════════════════════════════════════════════════════════════════════
 elif "Trends" in page:
     st.markdown('<div class="page-title">Tournament Trends</div>', unsafe_allow_html=True)
@@ -1074,13 +728,12 @@ elif "Trends" in page:
         ).reset_index()
         fig_d = make_subplots(specs=[[{"secondary_y":True}]])
         fig_d.add_trace(go.Bar(x=daily['date_only'].astype(str), y=daily['goals'],
-                               name='Total Goals', marker_color=BLUE_MID), secondary_y=False)
+            name='Total Goals', marker_color=BLUE_MID), secondary_y=False)
         fig_d.add_trace(go.Scatter(x=daily['date_only'].astype(str), y=daily['avg'].round(2),
-                                   name='Avg/Match', mode='lines+markers',
-                                   line=dict(color=BLUE_LIT, width=2),
-                                   marker=dict(size=7, color=BLUE_LIT)), secondary_y=True)
+            name='Avg/Match', mode='lines+markers',
+            line=dict(color=BLUE_LIT, width=2), marker=dict(size=7, color=BLUE_LIT)), secondary_y=True)
         fig_d.add_hline(y=avg_goals, line_dash="dash", line_color="rgba(255,255,255,0.2)",
-                        annotation_text=f"Avg {avg_goals}", secondary_y=True)
+            annotation_text=f"Avg {avg_goals}", secondary_y=True)
         fig_d.update_layout(**PLOT, height=380, title="Goals Per Match Day")
         fig_d.update_yaxes(color=WHITE30, secondary_y=False)
         fig_d.update_yaxes(color=BLUE_LIT, secondary_y=True)
@@ -1101,19 +754,15 @@ elif "Trends" in page:
         cg2 = cg2.sort_values('Total', ascending=False)
         cl2, cr2 = st.columns(2)
         with cl2:
-            fig_c = go.Figure(go.Bar(
-                x=cg2['Confederation'], y=cg2['Total'],
+            fig_c = go.Figure(go.Bar(x=cg2['Confederation'], y=cg2['Total'],
                 marker=dict(color=cg2['Total'], colorscale=BLUE_SCALE, showscale=False),
-                text=cg2['Total'], textposition='outside', textfont=dict(color=WHITE)
-            ))
+                text=cg2['Total'], textposition='outside', textfont=dict(color=WHITE)))
             fig_c.update_layout(**PLOT, height=340, title="Goals by Confederation", showlegend=False)
             st.plotly_chart(fig_c, use_container_width=True)
         with cr2:
-            fig_c2 = go.Figure(go.Bar(
-                x=cg2['Confederation'], y=cg2['Avg'].round(2),
+            fig_c2 = go.Figure(go.Bar(x=cg2['Confederation'], y=cg2['Avg'].round(2),
                 marker=dict(color=cg2['Avg'], colorscale=BLUE_SCALE, showscale=False),
-                text=cg2['Avg'].round(2), textposition='outside', textfont=dict(color=WHITE)
-            ))
+                text=cg2['Avg'].round(2), textposition='outside', textfont=dict(color=WHITE)))
             fig_c2.update_layout(**PLOT, height=340, title="Avg Goals/Match by Confederation", showlegend=False)
             st.plotly_chart(fig_c2, use_container_width=True)
 
@@ -1124,18 +773,9 @@ elif "Trends" in page:
             rh = FIFA_RANKINGS.get(r['home_team'],90)
             ra = FIFA_RANKINGS.get(r['away_team'],90)
             hg,ag = int(r['home_score']),int(r['away_score'])
-            if ag>hg and ra>rh:
-                upsets.append({'Match':f"{r['home_team']} vs {r['away_team']}",
-                               'Score':f"{hg}-{ag}",'Winner':r['away_team'],
-                               'Rank Diff':ra-rh,'Date':r['match_date'].strftime('%d %b')})
-            elif hg>ag and rh>ra:
-                upsets.append({'Match':f"{r['home_team']} vs {r['away_team']}",
-                               'Score':f"{hg}-{ag}",'Winner':r['home_team'],
-                               'Rank Diff':rh-ra,'Date':r['match_date'].strftime('%d %b')})
-            elif hg==ag and abs(rh-ra)>=20:
-                upsets.append({'Match':f"{r['home_team']} vs {r['away_team']}",
-                               'Score':f"{hg}-{ag}",'Winner':'Draw',
-                               'Rank Diff':abs(rh-ra),'Date':r['match_date'].strftime('%d %b')})
+            if ag>hg and ra>rh: upsets.append({'Match':f"{r['home_team']} vs {r['away_team']}","Score":f"{hg}-{ag}",'Winner':r['away_team'],'Rank Diff':ra-rh,'Date':r['match_date'].strftime('%d %b')})
+            elif hg>ag and rh>ra: upsets.append({'Match':f"{r['home_team']} vs {r['away_team']}","Score":f"{hg}-{ag}",'Winner':r['home_team'],'Rank Diff':rh-ra,'Date':r['match_date'].strftime('%d %b')})
+            elif hg==ag and abs(rh-ra)>=20: upsets.append({'Match':f"{r['home_team']} vs {r['away_team']}","Score":f"{hg}-{ag}",'Winner':'Draw','Rank Diff':abs(rh-ra),'Date':r['match_date'].strftime('%d %b')})
         if upsets:
             udf = pd.DataFrame(upsets).sort_values('Rank Diff', ascending=False)
             for _,u in udf.iterrows():
@@ -1163,31 +803,25 @@ elif "Trends" in page:
             gdf2 = standings_df[standings_df['Group']==grp]
             gm   = matches_df[matches_df['group_short']==grp]
             if len(gdf2)>=2:
-                cd.append({'Group':grp,
-                           'Pts Spread':int(gdf2['Pts'].max()-gdf2['Pts'].min()),
+                cd.append({'Group':grp,'Pts Spread':int(gdf2['Pts'].max()-gdf2['Pts'].min()),
                            'Avg Goals':round(gm['total_goals'].mean(),2) if len(gm) else 0})
         cdf = pd.DataFrame(cd)
         cl3, cr3 = st.columns(2)
         with cl3:
-            fig_s = go.Figure(go.Bar(
-                x=cdf['Group'], y=cdf['Avg Goals'],
+            fig_s = go.Figure(go.Bar(x=cdf['Group'], y=cdf['Avg Goals'],
                 marker=dict(color=cdf['Avg Goals'], colorscale=BLUE_SCALE, showscale=False),
-                text=cdf['Avg Goals'], textposition='outside', textfont=dict(color=WHITE)
-            ))
+                text=cdf['Avg Goals'], textposition='outside', textfont=dict(color=WHITE)))
             fig_s.update_layout(**PLOT, height=320, title="Avg Goals per Match by Group", showlegend=False)
             st.plotly_chart(fig_s, use_container_width=True)
         with cr3:
-            fig_s2 = go.Figure(go.Bar(
-                x=cdf['Group'], y=cdf['Pts Spread'],
-                marker=dict(color=cdf['Pts Spread'],
-                            colorscale=[[0,BLUE_LIT],[1,RED]], showscale=False),
-                text=cdf['Pts Spread'], textposition='outside', textfont=dict(color=WHITE)
-            ))
+            fig_s2 = go.Figure(go.Bar(x=cdf['Group'], y=cdf['Pts Spread'],
+                marker=dict(color=cdf['Pts Spread'], colorscale=[[0,BLUE_LIT],[1,RED]], showscale=False),
+                text=cdf['Pts Spread'], textposition='outside', textfont=dict(color=WHITE)))
             fig_s2.update_layout(**PLOT, height=320, title="Points Spread (Higher = Less Competitive)", showlegend=False)
             st.plotly_chart(fig_s2, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PAGE 6 — PREDICTIONS (UNCHANGED)
+# PAGE 6 — PREDICTIONS
 # ══════════════════════════════════════════════════════════════════════════════
 elif "Predictions" in page:
     st.markdown('<div class="page-title">AI Predictions</div>', unsafe_allow_html=True)
@@ -1254,11 +888,11 @@ elif "Predictions" in page:
             with c1:
                 st.markdown(f'{emoji} **{row["team_name"]}** &nbsp; <span style="font-size:10px;color:{WHITE30}">Group {row["group_name"]} · Rank #{int(row["fifa_ranking"])}</span>', unsafe_allow_html=True)
             with c2:
-                st.markdown(f'<div style="font-size:12px;color:{WHITE60}">**{int(row["points"])}** pts</div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="font-size:12px;color:{WHITE}">**{int(row["points"])}** pts</div>', unsafe_allow_html=True)
             with c3:
-                st.markdown(f'<div style="font-size:12px;color:{WHITE60}">GD **{gd_str}**</div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="font-size:12px;color:{WHITE}">GD **{gd_str}**</div>', unsafe_allow_html=True)
             with c4:
-                st.markdown(f'<div style="font-size:12px;color:{WHITE60}">**{int(row["played"])}** played</div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="font-size:12px;color:{WHITE}">**{int(row["played"])}** played</div>', unsafe_allow_html=True)
             with c5:
                 st.markdown(f'<div style="text-align:right;color:{col_prob};font-weight:700;font-size:17px">{prob}%</div>', unsafe_allow_html=True)
             st.progress(int(prob))
@@ -1266,7 +900,6 @@ elif "Predictions" in page:
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown(f"""
 <div style="text-align:center;padding:20px;font-size:10px;color:{WHITE30};
             border-top:1px solid {BORDER2};margin-top:20px;letter-spacing:1px">
