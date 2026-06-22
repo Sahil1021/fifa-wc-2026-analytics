@@ -499,17 +499,16 @@ PLOT = dict(
 BLUE_SCALE = [[0, "#1a3a8f"], [0.5, BLUE_MID], [1.0, BLUE_LIT]]
 
 # ── CONNECTION (UNCHANGED) ────────────────────────────────────────────────────
-@st.cache_resource
 def get_connection():
-    cs = (
+    return pyodbc.connect(
         f"DRIVER={{ODBC Driver 17 for SQL Server}};"
         f"SERVER={os.getenv('DB_SERVER')},1433;"
         f"DATABASE={os.getenv('DB_NAME')};"
         f"UID={os.getenv('DB_USERNAME')};"
         f"PWD={os.getenv('DB_PASSWORD')};"
-        f"Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+        f"Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;",
+        autocommit=True
     )
-    return pyodbc.connect(cs)
 
 # ── DATA (UNCHANGED) ──────────────────────────────────────────────────────────
 @st.cache_data(ttl=300)
@@ -813,10 +812,10 @@ if "Overview" in page:
                     <div class="match-meta">{r['match_date'].strftime('%d %b')} · Group {r['group_short']}</div>
                     <div><span class="badge badge-win">🔥 {int(r['total_goals'])} GOALS</span></div>
                 </div>
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px">
-                    <div class="match-team">{r['home_team']}</div>
-                    <div class="match-score">{int(r['home_score'])} – {int(r['away_score'])}</div>
-                    <div class="match-team" style="text-align:right">{r['away_team']}</div>
+                <div style="display:flex;align-items:center;margin-top:10px">
+                    <div style="flex:1;font-size:14px;font-weight:600;{hw}">{r['home_team']}</div>
+                    <div class="match-score" style="width:80px;flex-shrink:0;text-align:center">{int(r['home_score'])} – {int(r['away_score'])}</div>
+                    <div style="flex:1;font-size:14px;font-weight:600;text-align:right;{aw}">{r['away_team']}</div>
                 </div>
             </div>""", unsafe_allow_html=True)
 
@@ -832,10 +831,10 @@ if "Overview" in page:
             with cols_aw[i % 3]:
                 st.markdown(f"""<div class="match-card-plain">
                     <div class="match-meta">{r['match_date'].strftime('%d %b')} · Group {r['group_short']}</div>
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
-                        <div class="match-team">{r['home_team']}</div>
-                        <div class="match-score" style="font-size:22px">{int(r['home_score'])}–{int(r['away_score'])}</div>
-                        <div class="match-team" style="text-align:right">{r['away_team']}</div>
+                    <div style="display:flex;align-items:center;margin-top:10px">
+                        <div style="flex:1;font-size:14px;font-weight:600;{hw}">{r['home_team']}</div>
+                        <div class="match-score" style="width:80px;flex-shrink:0;text-align:center">{int(r['home_score'])} – {int(r['away_score'])}</div>
+                        <div style="flex:1;font-size:14px;font-weight:600;text-align:right;{aw}">{r['away_team']}</div>
                     </div>
                     <div style="margin-top:4px">
                         {'<span class="badge badge-upset">⚡ UPSET · Rank #'+str(rk_a)+' beat #'+str(rk_h)+'</span>' if upset else '<span class="badge badge-away">AWAY WIN</span>'}
