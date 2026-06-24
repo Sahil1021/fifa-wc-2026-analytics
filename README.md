@@ -195,8 +195,7 @@ streamlit run app.py
 ## 👤 Built By
 
 **Sahil Bhure**
-MSc Business Analytics — Warwick Business School
-BSc Data Science — IIT Madras | BE CS — SPPU Pune
+MSc Business Analytics - Warwick Business School
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sahil-bhure/)
 [![Dashboard](https://img.shields.io/badge/Live%20Dashboard-Open-00b4ff?style=flat-square&logo=streamlit&logoColor=white)](https://fifa-wc-2026-analytics.streamlit.app)
