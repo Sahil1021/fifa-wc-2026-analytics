@@ -1,137 +1,179 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:003eb3,100:00b4ff&height=200&section=header&text=FIFA%20World%20Cup%202026&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=Live%20Analytics%20Dashboard&descAlignY=58&descSize=20&descColor=rgba(255,255,255,0.8)" width="100%"/>
+```
+        🏟️  ESTADIO AZTECA  |  METLIFE STADIUM  |  AT&T STADIUM  🏟️
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                                                    
+         ⚽  FIFA WORLD CUP 2026  —  LIVE ANALYTICS PLATFORM  ⚽   
+                                                                    
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+              USA 🇺🇸  |  CANADA 🇨🇦  |  MEXICO 🇲🇽
+```
 
-[![Live Demo](https://img.shields.io/badge/Live%20Dashboard-00b4ff?style=for-the-badge&logo=streamlit&logoColor=white)](https://fifa-wc-2026-analytics.streamlit.app)
+[![Live Dashboard](https://img.shields.io/badge/⚽%20LIVE%20DASHBOARD-00b4ff?style=for-the-badge&logoColor=white)](https://fifa-wc-2026-analytics.streamlit.app)
 [![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Azure SQL](https://img.shields.io/badge/Azure%20SQL-Cloud%20DB-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://azure.microsoft.com)
+[![Azure SQL](https://img.shields.io/badge/Azure%20SQL-Cloud-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://azure.microsoft.com)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-**An end-to-end data analytics platform built during the live FIFA World Cup 2026 tournament. Real match data, cloud database, ML predictions, deployed dashboard.**
+**Real match data. Cloud database. Machine learning predictions. 10,000 simulated tournaments. Built live during the 2026 World Cup.**
 
-[View Live Dashboard](https://fifa-wc-2026-analytics.streamlit.app) · [Report Bug](https://github.com/Sahil1021/fifa-wc-2026-analytics/issues)
+[🏟️ Open Dashboard](https://fifa-wc-2026-analytics.streamlit.app) · [🐛 Report Bug](https://github.com/Sahil1021/fifa-wc-2026-analytics/issues)
 
 </div>
 
 ---
 
-## What This Is
+## 🎯 What Is This?
 
-A fully deployed analytics platform that ingests live World Cup match data, stores it in Azure SQL, runs a Random Forest model to predict tournament winners, and serves everything through a custom Streamlit dashboard — built entirely during the tournament.
+A fully deployed end-to-end analytics platform tracking the FIFA World Cup 2026 in real time. Every day, match data is pulled from an API, stored in Azure SQL, fed into a machine learning model, and served through a live Streamlit dashboard.
 
----
-
-## Architecture
-
-```
-football-data.org API
-        │
-        ▼
-  fetch_data.py  ──────────────────────────────────────────┐
-  (upsert pipeline)                                         │
-        │                                                   │
-        ▼                                                   ▼
-  Azure SQL Database (fifa-wc-db)              02_knockout_predictor.ipynb
-  ├── teams (48 rows)                          (Random Forest model)
-  ├── matches (72 fixtures)                            │
-  ├── group_standings                                  │
-  └── predictions (48 rows) ◄───────────────────────┘
-        │
-        ▼
-  Streamlit Dashboard
-  (fifa-wc-2026-analytics.streamlit.app)
-```
+Built from scratch during the tournament — not a tutorial project, not a demo dataset. Real data, real cloud, real predictions updating as the tournament unfolds.
 
 ---
 
-## Dashboard Pages
+## 🏗️ How It's Built
 
-| Page | What's in it |
+```
+                    football-data.org API
+                           │
+                    fetch_data.py
+                   (daily upsert pipeline)
+                           │
+              ┌────────────▼────────────┐
+              │     Azure SQL Database   │
+              │  ┌─────────────────────┐│
+              │  │ teams       (48)    ││
+              │  │ matches     (72)    ││
+              │  │ predictions (48)    ││
+              │  └─────────────────────┘│
+              └────────────┬────────────┘
+                           │
+            ┌──────────────┴──────────────┐
+            │                             │
+    02_knockout_predictor.ipynb    Streamlit Dashboard
+    ┌───────────────────────────┐  (fifa-wc-2026-analytics
+    │ Random Forest Classifier  │   .streamlit.app)
+    │ Monte Carlo Simulator     │
+    │ 10,000 tournament sims    │
+    └───────────────────────────┘
+```
+
+---
+
+## ⚽ Dashboard Pages
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🏠 Overview  │ 📊 Standings │ ⚽ Results │ 🔍 Team │ 📈 Trends │ 🏆 Predictions
+└─────────────────────────────────────────────────────────────────┘
+```
+
+| Page | What You Get |
 |------|-------------|
-| 🏠 Overview | Live KPIs, goals by group, result distribution, top scorers, upset tracker |
-| 📊 Group Standings | Custom HTML tables with gradient row colours by position, live points |
-| ⚽ Match Results | Filterable by group and result type, sortable by date |
-| 🔍 Team Deep Dive | Form guide, match log, goals chart, group position, AI prediction |
-| 📈 Tournament Trends | Daily goals timeline, confederation analysis, upset tracker, group competitiveness |
-| 🏆 Predictions | Podium display, bar chart top 10, group advancement probabilities |
+| 🏠 **Overview** | Live KPIs, goals by group, result distribution, top scorers, upset tracker |
+| 📊 **Group Standings** | Live points table with gradient row colours — top 2 highlighted, third place contenders marked |
+| ⚽ **Match Results** | Every result filterable by group and outcome, sortable by date |
+| 🔍 **Team Deep Dive** | Form guide dots, match log, goals chart, group position, AI win probability |
+| 📈 **Tournament Trends** | Daily goals timeline, confederation breakdown, upset tracker, group competitiveness |
+| 🏆 **Predictions** | Podium display, top 10 bar chart, all 48 teams ranked by advancement probability |
 
 ---
 
-## ML Model
+## 🤖 The ML Model
 
-**Random Forest Classifier** trained on historical World Cup data (2018 + 2022).
+### Random Forest + Monte Carlo Simulator
 
-**Features used:**
-- Points from group stage matches (live from Azure SQL)
-- Goal difference, goals for, goals per game
+Two-stage prediction system:
+
+**Stage 1 — Random Forest**
+Trained on 2018 + 2022 World Cup data (80 historical records). Predicts probability of advancing from group stage based on:
+- Points, goal difference, goals for/against
+- Goals per game, win rate
 - FIFA ranking (with Bayesian prior blending)
-- Momentum score (recent form weighted)
+- Momentum score (recent form, weighted)
+
+**Stage 2 — Monte Carlo Bracket Simulator**
+Takes the group stage probabilities and simulates the entire knockout bracket 10,000 times:
+
+```
+For each of 10,000 simulations:
+  1. Determine group qualifiers (probabilistic — upsets possible)
+  2. Simulate R32 → R16 → QF → SF → Final
+  3. Each match: stronger team wins with higher probability
+     but upset factor (0.65 compression) keeps it realistic
+  4. Record tournament winner
+
+Final probability = wins / 10,000
+```
+
+This means bracket path matters. If Argentina and Brazil are on the same side, only one can reach the Final — their probabilities compete against each other directly.
 
 **Key design decisions:**
-- **Cold start handling** — FIFA ranking floor that fades as matches played increases. Stops unplayed teams from getting 0% probability.
-- **Upsert pipeline** — not insert-only. Scores update correctly when live matches finish.
-- **TLA fallback** — handles mismatches between API codes and internal DB values (e.g. URU vs URY).
+- **Cold start handling** — FIFA ranking prior fades as matches played increases. Teams with 0 games played don't collapse to 0%.
+- **Upsert pipeline** — not insert-only. Scores update when live matches finish, not just appended.
+- **TLA fallback** — handles API code mismatches (e.g. `URU` vs `URY`).
+- **Upset compression 0.65** — even the strongest team doesn't win 95% of simulated knockout matches. Football is unpredictable.
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
+| Layer | Tech |
+|-------|------|
 | Language | Python 3.13 |
 | Database | Azure SQL (Spain Central) |
 | ML | scikit-learn Random Forest |
+| Simulation | NumPy Monte Carlo (10k runs) |
 | Dashboard | Streamlit + Plotly |
 | Data Source | football-data.org API |
 | Deployment | Streamlit Cloud |
-| Environment | Anaconda, VS Code |
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 fifa-wc-2026-analytics/
-├── dashboard/
-│   ├── app.py                    # Main Streamlit dashboard
-│   └── wc26_logo1.png            # WC26 logo asset
-├── notebooks/
-│   ├── 01_exploratory_analysis.ipynb    # EDA — 12 cells
-│   └── 02_knockout_predictor.ipynb      # ML model + saves to Azure SQL
-├── scripts/
-│   ├── fetch_data.py             # Daily data pipeline (upsert)
-│   ├── create_schema.py          # Azure SQL schema setup
+│
+├── 📊 dashboard/
+│   ├── app.py                        # Streamlit dashboard (6 pages)
+│   └── wc26_logo1.png               # WC26 logo
+│
+├── 📓 notebooks/
+│   ├── 01_exploratory_analysis.ipynb # EDA — goals, upsets, trends
+│   └── 02_knockout_predictor.ipynb   # RF model + Monte Carlo simulator
+│
+├── ⚙️ scripts/
+│   ├── fetch_data.py                 # Daily upsert pipeline
+│   ├── create_schema.py             # Azure SQL schema setup
 │   ├── create_predictions_table.py
 │   ├── db_connection.py
 │   └── verify_data.py
-├── data/                         # Saved chart outputs
+│
+├── 📈 data/                          # Saved chart outputs
 ├── requirements.txt
-└── .env                          # Not committed — Azure credentials
+└── .env                             # Not committed — Azure credentials
 ```
 
 ---
 
-## Setup & Run Locally
-
-**Prerequisites:** Python 3.10+, ODBC Driver 17 for SQL Server, Azure SQL access
+## 🚀 Run It Locally
 
 ```bash
 # Clone
 git clone https://github.com/Sahil1021/fifa-wc-2026-analytics.git
 cd fifa-wc-2026-analytics
 
-# Install dependencies
+# Install
 pip install -r requirements.txt
 
-# Create .env file
+# Set up .env
 DB_SERVER=your-server.database.windows.net
 DB_NAME=your-db-name
 DB_USERNAME=your-username
 DB_PASSWORD=your-password
 
-# Set up schema and fetch data
-python scripts/create_schema.py
+# Fetch live data
 python scripts/fetch_data.py
 
 # Run dashboard
@@ -141,26 +183,32 @@ streamlit run app.py
 
 ---
 
-## Key Learnings
+## 🧠 What I Learned Building This
 
-- **Upsert discipline** — insert-only pipelines silently fail for live data. Match scores need UPDATE logic not just INSERT.
-- **Cold start ML** — blending a FIFA ranking prior with model output prevents early-tournament predictions collapsing to zero for unplayed teams.
-- **Cloud deployment** — Azure firewall rules, dynamic IPs, and stale connection handling are real production concerns even for small projects.
-- **CSS specificity in Streamlit** — Streamlit's internal inline styles require `!important` overrides and sometimes direct `data-testid` selectors to override reliably.
+- **Upsert discipline** — an insert-only pipeline silently drops score updates. Painful to debug at 2am.
+- **Cold start in ML** — blending a FIFA ranking prior prevents early-tournament predictions from collapsing.
+- **Monte Carlo > static formulas** — France and Argentina in opposite bracket halves get very different probabilities even with similar group stage stats.
+- **Streamlit + Azure on cloud** — dynamic IPs, stale connections, CSS specificity battles. All real production problems even at small scale.
 
 ---
 
-## Built By
+## 👤 Built By
 
-**Sahil Bhure**  
-MSc Business Analytics — Warwick Business School  
-BSc Data Science — IIT Madras
+**Sahil Bhure**
+MSc Business Analytics — Warwick Business School
+BSc Data Science — IIT Madras | BE CS — SPPU Pune
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/sahilbhure)
-[![Live Dashboard](https://img.shields.io/badge/Dashboard-Live-00b4ff?style=flat-square&logo=streamlit&logoColor=white)](https://fifa-wc-2026-analytics.streamlit.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sahil-bhure/)
+[![Dashboard](https://img.shields.io/badge/Live%20Dashboard-Open-00b4ff?style=flat-square&logo=streamlit&logoColor=white)](https://fifa-wc-2026-analytics.streamlit.app)
 
 ---
 
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00b4ff,100:003eb3&height=100&section=footer" width="100%"/>
+
+```
+🥇 France  |  🥈 England  |  🥉 Spain  |  ... or will Argentina surprise everyone? 🇦🇷
+```
+
+*Predictions update after every matchday. Check back after group stage.*
+
 </div>
