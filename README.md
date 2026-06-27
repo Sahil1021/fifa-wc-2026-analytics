@@ -43,7 +43,7 @@ Built from scratch during the tournament — not a tutorial project, not a demo 
               │     Azure SQL Database   │
               │  ┌─────────────────────┐│
               │  │ teams       (48)    ││
-              │  │ matches     (72)    ││
+              │  │ matches     (72+)   ││
               │  │ predictions (48)    ││
               │  └─────────────────────┘│
               └────────────┬────────────┘
@@ -98,7 +98,7 @@ Takes the group stage probabilities and simulates the entire knockout bracket 10
 ```
 For each of 10,000 simulations:
   1. Determine group qualifiers (probabilistic — upsets possible)
-  2. Simulate R32 → R16 → QF → SF → Final
+  2. Simulate R32 → R16 → QF → SF → Final using real confirmed FIFA bracket pairings
   3. Each match: stronger team wins with higher probability
      but upset factor (0.65 compression) keeps it realistic
   4. Record tournament winner
@@ -189,6 +189,7 @@ streamlit run app.py
 - **Cold start in ML** — blending a FIFA ranking prior prevents early-tournament predictions from collapsing.
 - **Monte Carlo > static formulas** — France and Argentina in opposite bracket halves get very different probabilities even with similar group stage stats.
 - **Streamlit + Azure on cloud** — dynamic IPs, stale connections, CSS specificity battles. All real production problems even at small scale.
+- **Real bracket matters** — a static formula gives France 31%. Simulate the actual R32 pairings 10,000 times and it drops to 13.8% because bracket path and opponent quality eat into your probability.
 
 ---
 
@@ -205,9 +206,9 @@ MSc Business Analytics - Warwick Business School
 <div align="center">
 
 ```
-🥇 France  |  🥈 England  |  🥉 Spain  |  ... or will Argentina surprise everyone? 🇦🇷
+🥇 France 13.8%  |  🥈 Spain 8.7%  |  🥉 England 8.7%  |  Argentina 5.3% and climbing 🇦🇷
 ```
 
-*Predictions update after every matchday. Check back after group stage.*
+*Predictions update after every matchday. Knockout bracket simulator active — Round of 32 underway.*
 
 </div>
