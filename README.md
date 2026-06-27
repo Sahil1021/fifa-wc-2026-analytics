@@ -206,7 +206,7 @@ MSc Business Analytics - Warwick Business School
 <div align="center">
 
 ```
-🥇 France 13.8%  |  🥈 Spain 8.7%  |  🥉 England 8.7%  |  Argentina 5.3% and climbing 🇦🇷
+🥇 France 13.8%  |  🥈 Spain 8.7%  |  🥉 England 8.7% 
 ```
 
 *Predictions update after every matchday. Knockout bracket simulator active — Round of 32 underway.*
